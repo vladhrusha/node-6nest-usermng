@@ -1,9 +1,8 @@
-const addUserValidation = require("./addUserValidation");
-const getAllUsersValidation = require("./getAllUsersValidation");
-const getByNicknameValidation = require("./getByNicknameValidation");
-const updateUserValidation = require("./updateUserValidation");
-const deleteByNicknameValidation = require("./deleteByNicknameValidation");
-const voteValidation = require("./voteValidation");
+const addUserValidation = require('./addUserValidation');
+const getAllUsersValidation = require('./getAllUsersValidation');
+const getByNicknameValidation = require('./getByNicknameValidation');
+const updateUserValidation = require('./updateUserValidation');
+const deleteByNicknameValidation = require('./deleteByNicknameValidation');
 
 module.exports = {
   addUserValidation,
@@ -11,5 +10,4 @@ module.exports = {
   getByNicknameValidation,
   updateUserValidation,
   deleteByNicknameValidation,
-  voteValidation,
 };

@@ -10,6 +10,6 @@ import { AuthenticateMiddleware } from './authenticate.middleware';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthenticateMiddleware).forRoutes('*');
+    consumer.apply(AuthenticateMiddleware).forRoutes('/task6/v1/vote');
   }
 }
