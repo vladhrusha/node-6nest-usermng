@@ -76,5 +76,6 @@ export class AppController {
   @Post(`${appName}/${appVersion}/vote`)
   async vote(@Req() req) {
     const result = await this.appService.vote(req);
+    return { message: result };
   }
 }

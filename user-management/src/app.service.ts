@@ -46,7 +46,7 @@ export class AppService {
   }
   //vote
   async vote(req) {
-    await requestHandlers.handleVote(req);
-    return;
+    const result = await requestHandlers.handleVote(req);
+    return result;
   }
 }
