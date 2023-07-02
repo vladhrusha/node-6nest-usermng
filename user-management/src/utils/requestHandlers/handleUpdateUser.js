@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-const { updateUser, getByNickname } = require("../../services/user.service");
-const encrypt = require("../encrypt");
+const { updateUser, getByNickname } = require('../../services/user.service');
+const encrypt = require('../encrypt');
 
-const handleUpdateUser = async (req, res) => {
+const handleUpdateUser = async (req) => {
   const { nickname, lastname, firstname, newPassword } = req.body;
 
   const encryptionResult = await encrypt(newPassword);
@@ -12,10 +12,10 @@ const handleUpdateUser = async (req, res) => {
   const user = await getByNickname({ nickname });
   const lastModified = user.updated_at;
 
-  const ifUnmodifiedSince = new Date(req.headers["if-unmodified-since"]);
+  const ifUnmodifiedSince = new Date(req.headers['if-unmodified-since']);
 
   if (ifUnmodifiedSince && new Date(ifUnmodifiedSince) < lastModified) {
-    throw new Error("User has been modified since last retrieved");
+    throw new Error('User has been modified since last retrieved');
   }
 
   updateUser({
@@ -26,6 +26,7 @@ const handleUpdateUser = async (req, res) => {
     salt,
     updated_at,
   });
+  return;
 };
 
 module.exports = handleUpdateUser;

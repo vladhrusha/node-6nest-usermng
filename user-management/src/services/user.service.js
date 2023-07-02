@@ -59,6 +59,7 @@ const updateUser = async ({
       },
     },
   );
+  return;
 };
 
 const addVote = async ({
