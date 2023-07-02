@@ -9,7 +9,6 @@ import {
   Body,
   ValidationPipe,
 } from '@nestjs/common';
-import { IsInt, IsIn, Min, Max, IsString } from 'class-validator';
 
 import { AppService } from './app.service';
 const validator = require('../src/utils/requestValidations/index.js');
@@ -17,14 +16,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 const appName = 'task6';
 const appVersion = process.env.APP_VERSION;
-class VoteDto {
-  @IsInt({ message: 'Vote value must be an integer' })
-  @IsIn([-1, 0, 1], { message: 'Vote value should be either -1, 0, or 1' })
-  value: number;
-
-  @IsString({ message: 'Destination nickname is required' })
-  destNickname: string;
-}
+import { VoteDto } from './utils/requestValidations/voteDto';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
