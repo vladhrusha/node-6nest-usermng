@@ -1,8 +1,10 @@
-/* eslint-disable camelcase */
-const { updateUser, getByNickname } = require('../../services/user.service');
-const encrypt = require('../encrypt');
-
 const handleUpdateUser = async (req) => {
+  /* eslint-disable camelcase */
+  const {
+    updateUser,
+    getByNickname,
+  } = require('../../services/user.service.ts');
+  const encrypt = require('../encrypt.ts');
   const { nickname, lastname, firstname, newPassword } = req.body;
 
   const encryptionResult = await encrypt(newPassword);

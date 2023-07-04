@@ -1,6 +1,5 @@
-const { getAllUsers } = require("../../services/user.service");
-
 const handleGetUsers = async (reqBody) => {
+  const { getAllUsers } = require('../../services/user.service.ts');
   const page = reqBody.page || 1;
   let limit;
   if (reqBody.limit > 100) limit = 100;
@@ -23,7 +22,7 @@ const handleGetUsers = async (reqBody) => {
       limit,
     };
   } else {
-    return "null or undefined";
+    return 'null or undefined';
   }
 };
 

@@ -4,13 +4,13 @@ import { Injectable } from '@nestjs/common';
 //   handleGetByNickname,
 // } = require('./utils/requestHandlers/handleGetByNickname');
 // const { name1 } = require('./utils/requestHandlers/test.ts');
-const requestHandlers = require('../src/utils/requestHandlers/index.js');
-const jwt = require('../src/utils/jwt/index.js');
+const requestHandlers = require('../src/utils/requestHandlers/index.ts');
+const jwt = require('../src/utils/jwt/index.ts');
 
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Hello World!111';
+    return 'Hello World!1112';
   }
   //get all users
   async getUsers(body) {
@@ -19,6 +19,7 @@ export class AppService {
   }
   //get user by nickname
   async getByNickname(nickname) {
+    console.log(requestHandlers);
     const user = await requestHandlers.handleGetByNickname(nickname);
     return user;
   }

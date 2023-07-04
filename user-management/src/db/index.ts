@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
+const mongoose = require('mongoose');
+require('dotenv').config();
 
 const Db = process.env.ATLAS_URI;
-const logger = require("../utils/logger");
+// const logger = require("../utils/logger");
 
 let conn;
 try {
