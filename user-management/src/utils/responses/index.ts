@@ -1,7 +1,9 @@
-// const postVoteErrorResponse = require("./postVoteErrorResponse");
-// const updateUserErrorResponse = require("./updateUserErrorResponse");
+{
+  const postVoteErrorResponse = require('./postVoteErrorResponse');
+  const updateUserErrorResponse = require('./updateUserErrorResponse');
 
-module.exports = {
-  postVoteErrorResponse,
-  updateUserErrorResponse,
-};
+  module.exports = {
+    postVoteErrorResponse,
+    updateUserErrorResponse,
+  };
+}

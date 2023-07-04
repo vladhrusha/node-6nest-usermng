@@ -7,6 +7,6 @@ const handleAddUser = async (reqBody) => {
   const encryptionResult = await encrypt(password);
   const salt = encryptionResult.salt;
   password = encryptionResult.password;
-  addUser({ nickname, password, firstname, lastname, salt });
+  await addUser({ nickname, password, firstname, lastname, salt });
 };
 module.exports = handleAddUser;

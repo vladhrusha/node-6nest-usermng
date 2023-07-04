@@ -17,6 +17,15 @@ dotenv.config();
 const appName = 'task6';
 const appVersion = process.env.APP_VERSION;
 import { VoteDto } from './utils/requestValidations/voteDto';
+// error responses
+const {
+  postVoteErrorResponse,
+  updateUserErrorResponse,
+} = require('./utils/responses');
+const {
+  errorResponse500,
+} = require('./utils/responses/genericStatusResponses');
+
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -29,13 +38,7 @@ export class AppController {
   //add user
   @Post(`${appName}/${appVersion}/user`)
   addUser(@Body() user) {
-    try {
-      this.appService.addUser(user);
-      return { message: 'User added' };
-    } catch (err) {
-      // Handle the error, e.g., using a custom error response function
-      // errorResponse500({ err });
-    }
+    return this.appService.addUser(user);
   }
   //login
   @Post(`${appName}/${appVersion}/login`)
@@ -44,8 +47,7 @@ export class AppController {
       const result = await this.appService.login(req);
       return { message: result };
     } catch (err) {
-      // Handle the error, e.g., using a custom error response function
-      // errorResponse500({ err });
+      errorResponse500({ err });
     }
   }
   //update user

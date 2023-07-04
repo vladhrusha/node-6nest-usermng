@@ -25,8 +25,12 @@ export class AppService {
   }
   //add user
   async addUser(user) {
-    await requestHandlers.handleAddUser(user);
-    return;
+    try {
+      await requestHandlers.handleAddUser(user);
+      return 'User added';
+    } catch (err: any) {
+      return { message: err.message };
+    }
   }
   //delete user
   async deleteUser(body) {
