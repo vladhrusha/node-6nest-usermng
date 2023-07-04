@@ -4,39 +4,20 @@ import { Injectable } from '@nestjs/common';
 //   handleGetByNickname,
 // } = require('./utils/requestHandlers/handleGetByNickname');
 // const { name1 } = require('./utils/requestHandlers/test.ts');
-const requestHandlers = require('../src/utils/requestHandlers/index.ts');
+const requestHandlers = require('./utils/requestHandlers/index');
 const jwt = require('../src/utils/jwt/index.ts');
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!1112';
-  }
-  //get all users
-  async getUsers(body) {
-    const users = await requestHandlers.handleGetUsers(body);
-    return users;
-  }
-  //get user by nickname
-  async getByNickname(nickname) {
-    console.log(requestHandlers);
-    const user = await requestHandlers.handleGetByNickname(nickname);
-    return user;
-  }
-  //add user
-  async addUser(user) {
-    try {
-      await requestHandlers.handleAddUser(user);
-      return 'User added';
-    } catch (err: any) {
-      return { message: err.message };
-    }
-  }
-  //delete user
-  async deleteUser(body) {
-    await requestHandlers.handleDeleteUser(body);
-    return;
-  }
+  // getHello(): string {
+  //   return 'Hello World!1112';1
+  // }
+
+  // //delete user
+  // async deleteUser(body) {
+  //   await requestHandlers.handleDeleteUser(body);
+  //   return;
+  // }
   //login
   async login(req) {
     const user = await requestHandlers.handleLogin(req);
@@ -44,14 +25,9 @@ export class AppService {
     const token = await jwt.generateAccessToken({ user, userId });
     return token;
   }
-  //update user
-  async updateUser(req) {
-    await requestHandlers.handleUpdateUser(req);
-    return;
-  }
-  //vote
-  async vote(req) {
-    const result = await requestHandlers.handleVote(req);
-    return result;
-  }
+  // //vote
+  // async vote(req) {
+  //   const result = await requestHandlers.handleVote(req);
+  //   return result;
+  // }
 }

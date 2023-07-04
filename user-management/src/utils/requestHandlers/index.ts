@@ -1,11 +1,11 @@
 {
-  const handleAddUser = require('./handleAddUser.ts');
-  const handleGetByNickname = require('./handleGetByNickname.ts');
-  const handleGetUsers = require('./handleGetUsers.ts');
-  const handleUpdateUser = require('./handleUpdateUser.ts');
-  const handleDeleteUser = require('./handleDeleteUser.ts');
-  const handleVote = require('./handleVote.ts');
-  const handleLogin = require('./handleLogin.ts');
+  const handleAddUser = require('./handleAddUser');
+  const handleGetByNickname = require('./handleGetByNickname');
+  const handleGetUsers = require('./handleGetUsers');
+  const handleUpdateUser = require('./handleUpdateUser');
+  const handleDeleteUser = require('./handleDeleteUser');
+  const handleVote = require('./handleVote');
+  const handleLogin = require('./handleLogin');
 
   module.exports = {
     handleAddUser,
