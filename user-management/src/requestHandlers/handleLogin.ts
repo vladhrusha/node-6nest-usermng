@@ -1,6 +1,6 @@
 {
   const handleLogin = async (req) => {
-    const { getByNickname } = require('../../services/user.service');
+    const { getByNickname } = require('../modules/user/user.database');
     const base64 = require('base-64');
     const authHeader = req.headers.authorization;
     const credentials = base64.decode(authHeader.split(' ')[1]);

@@ -8,6 +8,8 @@ import {
   Req,
   Body,
   ValidationPipe,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 
 import { AppService } from './app.service';
@@ -41,7 +43,7 @@ export class AppController {
       const result = await this.appService.login(req);
       return { message: result };
     } catch (err) {
-      errorResponse500({ err });
+      throw new HttpException({ err: err }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }

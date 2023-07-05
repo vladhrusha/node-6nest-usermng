@@ -8,10 +8,14 @@ import {
   Req,
   Body,
   ValidationPipe,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 
 import { UserService } from './user.service';
 import * as dotenv from 'dotenv';
+const putUserErrorResponse = require('./responses/putUserErrorResponse');
+
 dotenv.config();
 const appName = 'task6';
 const appVersion = process.env.APP_VERSION;
@@ -25,9 +29,14 @@ export class UserController {
   }
   //update user
   @Put(`${appName}/${appVersion}/user`)
-  updateUser(@Req() req) {
-    this.userService.updateUser(req);
-    return { message: 'userUpdated' };
+  @HttpCode(HttpStatus.OK)
+  async updateUser(@Req() req) {
+    try {
+      await this.userService.updateUser(req);
+      return 'user updated';
+    } catch (err) {
+      return await putUserErrorResponse(err);
+    }
   }
   //get all users
   @Get(`${appName}/${appVersion}/users`)
