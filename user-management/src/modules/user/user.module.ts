@@ -7,4 +7,8 @@ import { AuthenticateMiddleware } from '../../authenticate.middleware';
   controllers: [UserController],
   providers: [UserService],
 })
-export class UserModule {}
+export class UserModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    // consumer.apply(AuthenticateMiddleware).forRoutes('/task6/v1/deleteUser');
+  }
+}

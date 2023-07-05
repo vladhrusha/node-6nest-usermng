@@ -16,7 +16,6 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 const appName = 'task6';
 const appVersion = process.env.APP_VERSION;
-import { VoteDto } from './utils/requestValidations/voteDto';
 // error responses
 const {
   postVoteErrorResponse,
@@ -29,11 +28,11 @@ const {
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-
-  // @Get()
-  // getHello(): string {
-  //   return this.appService.getHello();
-  // }
+  //ping
+  @Get()
+  ping(): string {
+    return this.appService.ping();
+  }
 
   //login
   @Post(`${appName}/${appVersion}/login`)
@@ -45,17 +44,4 @@ export class AppController {
       errorResponse500({ err });
     }
   }
-
-  // //delete user
-  // @Delete(`${appName}/${appVersion}/user`)
-  // deleteUser(@Body() body) {
-  //   this.appService.deleteUser(body);
-  //   return { message: 'User deleted' };
-  // }
-  // //vote
-  // @Post(`${appName}/${appVersion}/vote`)
-  // async vote(@Req() req, @Body(new ValidationPipe()) voteDto: VoteDto) {
-  //   const result = await this.appService.vote(req);
-  //   return { message: result };
-  // }
 }

@@ -1,6 +1,6 @@
 {
   const handleGetUsers = async (reqBody) => {
-    const { getAllUsers } = require('../../services/user.service');
+    const { getAllUsers } = require('../user.database');
     const page = reqBody.page || 1;
     let limit;
     if (reqBody.limit > 100) limit = 100;

@@ -1,67 +1,12 @@
 {
   /* eslint-disable camelcase */
-  const User = require('../modules/user/user.model');
-  const Vote = require('../models/Vote');
+  const User = require('../user/user.model');
+  const Vote = require('./vote.model');
 
   // eslint-disable-next-line
-  const mongoose = require('../db/index');
+  const mongoose = require('../../db');
   // eslint-disable-next-line
-  const logger = require('../utils/logger');
-  const deleteAllUsers = async () => {
-    await User.deleteMany();
-  };
-  const deleteUserByName = async ({ nickname, deleted_at }) => {
-    await User.updateOne(
-      { nickname },
-      {
-        $set: {
-          deleted_at,
-        },
-      },
-    );
-  };
-  const getAllUsers = async (offset, limit) => {
-    const users = await User.find().skip(offset).limit(limit);
-    const totalUsers = await User.countDocuments();
-    return { users, totalUsers };
-  };
-  const getByNickname = async ({ nickname }) => {
-    return await User.findOne({ nickname });
-  };
-
-  const addUser = async ({ nickname, firstname, lastname, password, salt }) => {
-    const newUser = new User({
-      nickname,
-      firstname,
-      lastname,
-      password,
-      salt,
-    });
-    await newUser.save();
-  };
-
-  const updateUser = async ({
-    nickname,
-    lastname,
-    firstname,
-    encryptedPassword,
-    salt,
-    updated_at,
-  }) => {
-    await User.updateOne(
-      { nickname },
-      {
-        $set: {
-          lastname,
-          firstname,
-          password: encryptedPassword,
-          salt,
-          updated_at,
-        },
-      },
-    );
-    return;
-  };
+  const logger = require('../../utils/logger');
 
   const addVote = async ({
     value,
@@ -97,9 +42,9 @@
     if (sourceNickname === destNickname) {
       return 'You cannot vote for yourself.';
     }
-    if (!recentVoteByUserFrom && voteByUserFrom) {
-      return 'You can only vote once per hour.';
-    }
+    // if (!recentVoteByUserFrom && voteByUserFrom) {
+    //   return 'You can only vote once per hour.';
+    // }
     if (vote && vote.timestamp) {
       const previousVote = vote.value;
       if (previousVote !== vote) {
@@ -137,12 +82,6 @@
   };
 
   module.exports = {
-    getAllUsers,
-    addUser,
-    getByNickname,
-    updateUser,
-    deleteAllUsers,
-    deleteUserByName,
     addVote,
     deleteAllVotes,
     calculateRatings,

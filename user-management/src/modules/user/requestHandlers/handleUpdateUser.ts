@@ -1,11 +1,8 @@
 {
   const handleUpdateUser = async (req) => {
     /* eslint-disable camelcase */
-    const {
-      updateUser,
-      getByNickname,
-    } = require('../../services/user.service.ts');
-    const encrypt = require('../encrypt.ts');
+    const { updateUser, getByNickname } = require('../user.database');
+    const encrypt = require('../../../utils/encrypt');
     const { nickname, lastname, firstname, newPassword } = req.body;
 
     const encryptionResult = await encrypt(newPassword);

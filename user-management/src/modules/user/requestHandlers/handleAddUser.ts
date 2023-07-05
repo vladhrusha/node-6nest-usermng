@@ -1,8 +1,8 @@
 {
   const handleAddUser = async (reqBody) => {
-    const { addUser } = require('../../services/user.service');
-    const logger = require('../logger');
-    const encrypt = require('../encrypt');
+    const { addUser } = require('../user.database');
+    const logger = require('../../../utils/logger');
+    const encrypt = require('../../../utils/encrypt');
     const { nickname, lastname, firstname } = reqBody;
     let { password } = reqBody;
     const encryptionResult = await encrypt(password);

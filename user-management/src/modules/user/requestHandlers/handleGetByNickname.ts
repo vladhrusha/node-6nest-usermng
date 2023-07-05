@@ -1,6 +1,6 @@
 {
   const handleGetByNickname = async (nickname) => {
-    const { getByNickname } = require('../../services/user.service');
+    const { getByNickname } = require('../user.database');
     const dbResponse = await getByNickname({ nickname });
     return {
       nickname: dbResponse.nickname,
