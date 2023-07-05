@@ -7,7 +7,7 @@ import {
   HttpStatus,
   HttpCode,
 } from '@nestjs/common';
-import { VoteDto } from '../../utils/requestValidations/voteDto';
+import { PostVoteDto } from './vote.dto';
 
 import { VoteService } from './vote.service';
 import * as dotenv from 'dotenv';
@@ -21,7 +21,7 @@ export class VoteController {
   //vote
   @Post(`${appName}/${appVersion}/vote`)
   @HttpCode(HttpStatus.CREATED)
-  async vote(@Req() req, @Body(new ValidationPipe()) voteDto: VoteDto) {
+  async vote(@Req() req, @Body(new ValidationPipe()) postVoteDto: PostVoteDto) {
     const result = await this.voteService.vote(req);
     return await postVoteErrorResponse(result);
   }

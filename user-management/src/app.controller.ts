@@ -13,7 +13,6 @@ import {
 } from '@nestjs/common';
 
 import { AppService } from './app.service';
-const validator = require('../src/utils/requestValidations/index.ts');
 import * as dotenv from 'dotenv';
 dotenv.config();
 const appName = 'task6';
