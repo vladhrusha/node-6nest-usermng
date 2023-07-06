@@ -1,5 +1,9 @@
 {
-  const encrypt = async (password) => {
+  interface PasswordData {
+    password: string;
+    salt: string;
+  }
+  const encrypt = async (password: string): Promise<PasswordData> => {
     const crypto = require('crypto');
     const util = require('util');
     const logger = require('./logger');

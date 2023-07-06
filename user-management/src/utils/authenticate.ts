@@ -6,7 +6,13 @@
   const pbkdf2 = util.promisify(crypto.pbkdf2);
   const { getByNickname } = require('../services/user.service.ts');
 
-  const authenticate = async ({ nickname, password }) => {
+  const authenticate = async ({
+    nickname,
+    password,
+  }: {
+    nickname: string;
+    password: string;
+  }): Promise<boolean> => {
     try {
       const user = await getByNickname({ nickname });
       const derivedKey = await pbkdf2(

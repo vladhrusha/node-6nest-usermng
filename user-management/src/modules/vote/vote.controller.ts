@@ -21,7 +21,10 @@ export class VoteController {
   //vote
   @Post(`${appName}/${appVersion}/vote`)
   @HttpCode(HttpStatus.CREATED)
-  async vote(@Req() req, @Body(new ValidationPipe()) postVoteDto: PostVoteDto) {
+  async vote(
+    @Req() req,
+    @Body(new ValidationPipe()) postVoteDto: PostVoteDto,
+  ): Promise<string> {
     const result = await this.voteService.vote(req);
     return await postVoteErrorResponse(result);
   }

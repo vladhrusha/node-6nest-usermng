@@ -7,13 +7,18 @@
   const mongoose = require('../../db');
   // eslint-disable-next-line
   const logger = require('../../utils/logger');
-
+  interface VoteData {
+    value: number;
+    sourceUserId: string;
+    destNickname: string;
+    sourceNickname: string;
+  }
   const addVote = async ({
     value,
     sourceUserId,
     destNickname,
     sourceNickname,
-  }) => {
+  }: VoteData): Promise<string | void> => {
     const destinationUser = await User.findOne({
       nickname: destNickname,
     });
@@ -62,11 +67,11 @@
     }
   };
 
-  const deleteAllVotes = async () => {
-    await Vote.deleteMany();
-  };
+  // const deleteAllVotes = async (): Promise<void> => {
+  //   await Vote.deleteMany();
+  // };
 
-  const calculateRatings = async (users) => {
+  const calculateRatings = async (users: (typeof User)[]): Promise<void> => {
     if (users) {
       for (const user of users) {
         const updatedVotes = await Vote.find({ userTo: user._id });
@@ -83,7 +88,7 @@
 
   module.exports = {
     addVote,
-    deleteAllVotes,
+    // deleteAllVotes,
     calculateRatings,
   };
 }
