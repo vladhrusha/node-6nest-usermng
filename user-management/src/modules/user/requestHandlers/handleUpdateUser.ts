@@ -1,5 +1,5 @@
 {
-  const handleUpdateUser = async (req) => {
+  const handleUpdateUser = async (req): Promise<void> => {
     /* eslint-disable camelcase */
     const { updateUser, getByNickname } = require('../user.database');
     const encrypt = require('../../../utils/encrypt');
@@ -26,7 +26,6 @@
       salt,
       updated_at,
     });
-    return;
   };
 
   module.exports = handleUpdateUser;

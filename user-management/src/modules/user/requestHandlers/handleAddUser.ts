@@ -1,5 +1,5 @@
 {
-  const handleAddUser = async (reqBody) => {
+  const handleAddUser = async (reqBody): Promise<void> => {
     const { addUser } = require('../user.database');
     const logger = require('../../../utils/logger');
     const encrypt = require('../../../utils/encrypt');

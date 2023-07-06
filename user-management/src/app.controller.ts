@@ -17,14 +17,6 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 const appName = 'task6';
 const appVersion = process.env.APP_VERSION;
-// error responses
-const {
-  postVoteErrorResponse,
-  updateUserErrorResponse,
-} = require('./utils/responses');
-const {
-  errorResponse500,
-} = require('./utils/responses/genericStatusResponses');
 
 @Controller()
 export class AppController {
@@ -37,9 +29,9 @@ export class AppController {
 
   //login
   @Post(`${appName}/${appVersion}/login`)
-  async login(@Req() req) {
+  login(@Req() req): { message: string } {
     try {
-      const result = await this.appService.login(req);
+      const result = this.appService.login(req);
       return { message: result };
     } catch (err) {
       throw new HttpException({ err: err }, HttpStatus.INTERNAL_SERVER_ERROR);

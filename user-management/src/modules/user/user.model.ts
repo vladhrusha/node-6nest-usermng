@@ -5,7 +5,7 @@
     nickname: { type: String, required: true, unique: true },
     firstname: { type: String, required: false },
     lastname: { type: String, required: false },
-    password: { type: String, require: true },
+    password: { type: String, required: true },
     salt: { type: String, required: true },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: null },

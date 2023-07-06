@@ -9,10 +9,10 @@ export class AppService {
     return 'You have pinged';
   }
   //login
-  async login(req) {
-    const user = await requestHandlers.handleLogin(req);
+  login(req): string {
+    const user = requestHandlers.handleLogin(req);
     const userId = req.body.userId;
-    const token = await jwt.generateAccessToken({ user, userId });
+    const token: string = jwt.generateAccessToken({ user, userId });
     return token;
   }
 }

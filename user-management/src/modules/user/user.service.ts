@@ -1,39 +1,43 @@
 import { Injectable } from '@nestjs/common';
 const requestHandlers = require('./requestHandlers');
-
+import { User } from './user.interface';
+import {
+  PostUserDto,
+  DeleteUserDto,
+  GetUsersDto,
+  GetUserDto,
+  UpdateUserDto,
+} from './user.dto';
 @Injectable()
 export class UserService {
   constructor() {}
 
   //get all users
-  async getUsers(body) {
-    const users = await requestHandlers.handleGetUsers(body);
+  getUsers(body): User[] {
+    const users: User[] = requestHandlers.handleGetUsers(body);
     return users;
   }
   //get user by nickname
-  async getByNickname(nickname) {
-    console.log(requestHandlers);
-    const user = await requestHandlers.handleGetByNickname(nickname);
+  getByNickname(nickname: string): User {
+    const user: User = requestHandlers.handleGetByNickname(nickname);
     return user;
   }
   //add user
-  async addUser(user) {
+  async addUser(user: PostUserDto): Promise<string> {
     try {
       await requestHandlers.handleAddUser(user);
       return 'User added';
     } catch (err: any) {
-      return { message: err.message };
+      return err.message;
     }
   }
   //delete user
-  async deleteUser(body) {
-    await requestHandlers.handleDeleteUser(body);
-    return;
+  deleteUser(body: DeleteUserDto): void {
+    requestHandlers.handleDeleteUser(body);
   }
 
   //update user
-  async updateUser(req) {
-    await requestHandlers.handleUpdateUser(req);
-    return;
+  updateUser(req: UpdateUserDto): void {
+    requestHandlers.handleUpdateUser(req);
   }
 }

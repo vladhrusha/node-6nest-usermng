@@ -1,5 +1,13 @@
+import { User } from '../user.interface';
+
 {
-  const handleGetUsers = async (reqBody) => {
+  interface UsersResponse {
+    users: User[];
+    totalUsers: number;
+    page: number;
+    limit: number;
+  }
+  const handleGetUsers = async (reqBody): Promise<string | UsersResponse> => {
     const { getAllUsers } = require('../user.database');
     const page = reqBody.page || 1;
     let limit;

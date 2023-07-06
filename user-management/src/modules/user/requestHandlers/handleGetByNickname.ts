@@ -1,5 +1,5 @@
 {
-  const handleGetByNickname = async (nickname) => {
+  const handleGetByNickname = async (nickname: string): Promise<object> => {
     const { getByNickname } = require('../user.database');
     const dbResponse = await getByNickname({ nickname });
     return {
