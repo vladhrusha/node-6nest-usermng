@@ -3,10 +3,13 @@ import { Test } from '@nestjs/testing';
 import { UserModule } from '../src/modules/user/user.module';
 import { UserService } from '../src/modules/user/user.service';
 import { INestApplication } from '@nestjs/common';
-
+import * as dotenv from 'dotenv';
+dotenv.config();
+const appName = 'task6';
+const appVersion = process.env.APP_VERSION;
 describe('Users e2e', () => {
   let user: INestApplication;
-  let userService = { getByNickname: () => ['test'] };
+  let userService = { getByNickname: () => ['test'], addUser: () => ['test'] };
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -20,11 +23,26 @@ describe('Users e2e', () => {
     await user.init();
   });
   describe('GET /user', () => {
-    it(`should return user`, async () => {
+    it(`GET /user`, async () => {
       const response = await request(user.getHttpServer())
-        .get('/task6/v1/user/:nickname')
+        .get(`/${appName}/${appVersion}/user/:nickname`)
         .expect(200);
       expect(response.body).toEqual(await userService.getByNickname());
+    });
+  });
+  describe('POST /user', () => {
+    it(`POST /user`, async () => {
+      const userObject = {
+        nickname: 'vladhrusha36333144134',
+        password: 'ps1',
+        lastname: 'hrusha1',
+        firstname: 'vlad1',
+      };
+      const response = await request(user.getHttpServer())
+        .post(`/${appName}/${appVersion}/user`)
+        .send(userObject)
+        .expect(201);
+      expect(response.body).toEqual(await userService.addUser());
     });
   });
 
