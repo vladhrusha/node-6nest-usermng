@@ -29,10 +29,10 @@ export class AppController {
 
   //login
   @Post(`${appName}/${appVersion}/login`)
-  login(@Req() req): { message: string } {
+  login(@Req() req): string {
     try {
       const result = this.appService.login(req);
-      return { message: result };
+      return result;
     } catch (err) {
       throw new HttpException({ err: err }, HttpStatus.INTERNAL_SERVER_ERROR);
     }

@@ -9,6 +9,7 @@ import { Controller, Post, Req } from '@nestjs/common';
     const authHeader = req.headers.authorization;
     const credentials = base64.decode(authHeader.split(' ')[1]);
     const [nickname] = credentials.split(':');
+    console.log(authHeader);
     return await getByNickname({ nickname });
   };
   module.exports = handleLogin;

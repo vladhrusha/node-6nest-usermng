@@ -13,7 +13,7 @@ export class UserService {
   constructor() {}
 
   //get all users
-  getUsers(body): User[] {
+  getUsers(body?): User[] {
     const users: User[] = requestHandlers.handleGetUsers(body);
     return users;
   }

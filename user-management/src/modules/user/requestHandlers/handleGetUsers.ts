@@ -9,15 +9,15 @@ import { User } from '../user.interface';
   }
   const handleGetUsers = async (reqBody): Promise<string | UsersResponse> => {
     const { getAllUsers } = require('../user.database');
-    const page = reqBody.page || 1;
+    const page = reqBody?.page || 1;
     let limit;
-    if (reqBody.limit > 100) limit = 100;
-    else limit = reqBody.limit || 5;
+    if (reqBody?.limit > 100) limit = 100;
+    else limit = reqBody?.limit || 5;
     const offset = (page - 1) * limit;
 
     const { users, totalUsers } = await getAllUsers(offset, limit);
     if (users && totalUsers) {
-      return {
+      return await {
         users: users.map((entity) => {
           return {
             nickname: entity.nickname,
