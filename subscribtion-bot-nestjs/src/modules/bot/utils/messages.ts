@@ -1,5 +1,7 @@
+import { Context } from 'telegraf';
+
 {
-  const requestLocation = async (bot) => {
+  const requestLocation = async (bot: Context) => {
     bot.reply('Please share your location', {
       reply_markup: {
         keyboard: [
@@ -15,7 +17,7 @@
     });
   };
 
-  const respondLocation = async (bot) => {
+  const respondLocation = async (bot: Context) => {
     await bot.reply('Received Coordinates', {
       reply_markup: {
         remove_keyboard: true,
@@ -24,7 +26,7 @@
   };
   const { getByUsername } = require('../../subscription/subscription.database');
   const requestTime = async (
-    bot,
+    bot: Context,
     chatId: number,
     isSubscribing: Boolean,
     userName: string,

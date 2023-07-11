@@ -8,7 +8,7 @@ import { Coordinates } from '../../subscription/subscription.interface';
     chatId: number,
     coordinates: Coordinates,
     bot,
-  ): Promise<void> => {
+  ) => {
     let data;
     const numberOfDays = 1;
     try {

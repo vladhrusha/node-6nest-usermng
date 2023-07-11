@@ -1,3 +1,5 @@
+import { Context } from 'telegraf';
+
 {
   const onSendWeatherReport = require('./onSendWeatherReport');
   const CronJob = require('cron').CronJob;
@@ -6,7 +8,7 @@
 
   const addCronJob = async (
     chadId: number,
-    bot,
+    bot: Context,
     hour: number,
     minute: number,
     coordinates,

@@ -1,5 +1,6 @@
 import { Coordinates } from '../subscription/subscription.interface';
 type SubscriptionMap = Map<number, boolean>;
+import { Context } from 'telegraf';
 
 {
   const logger = require('../../utils/logger');
@@ -16,7 +17,7 @@ type SubscriptionMap = Map<number, boolean>;
   const handleAddError = require('./utils/errors/handleAddError');
   const handleDeleteError = require('./utils/errors/handleDeleteError');
   const addCronJob = require('./utils/addCronJob');
-  const handleHelp = async (ctx): Promise<void> => {
+  const handleHelp = async (ctx: Context): Promise<void> => {
     ctx.reply('Hi there!', {
       reply_markup: {
         keyboard: [
@@ -27,7 +28,7 @@ type SubscriptionMap = Map<number, boolean>;
   };
   const handleSub = async (
     chatId: number,
-    bot,
+    bot: Context,
     isSubscribingMap: SubscriptionMap,
   ): Promise<SubscriptionMap> => {
     try {
@@ -40,7 +41,7 @@ type SubscriptionMap = Map<number, boolean>;
   };
   const handleUnsub = async (
     chatId: number,
-    bot,
+    bot: Context,
     isSubscribingMap: SubscriptionMap,
     userName: string,
   ): Promise<SubscriptionMap> => {
@@ -59,7 +60,7 @@ type SubscriptionMap = Map<number, boolean>;
     msg: any;
     hour: number;
     minute: number;
-    ctx: any;
+    ctx: Context;
     userData: Coordinates;
   }
   const handleSubscriptionMessages = async ({
