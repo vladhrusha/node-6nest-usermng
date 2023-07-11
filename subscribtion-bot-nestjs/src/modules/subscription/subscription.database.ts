@@ -1,10 +1,15 @@
+import { Coordinates } from './subscription.interface';
+
 {
   const Subscription = require('./subscription.model');
   // eslint-disable-next-line
   const mongoose = require('../../database/index');
   const logger = require('../../utils/logger');
-
-  const updateLocation = async (username, lat, lon) => {
+  const updateLocation = async (
+    username: string,
+    lat: string,
+    lon: string,
+  ): Promise<void> => {
     try {
       await Subscription.updateOne(
         { userName: username },
@@ -15,7 +20,11 @@
     }
   };
 
-  const deleteSubscription = async (msg, hour, minute) => {
+  const deleteSubscription = async (
+    msg,
+    hour: string,
+    minute: string,
+  ): Promise<void> => {
     try {
       const result = await Subscription.updateOne(
         { userName: msg.from.username },
@@ -29,7 +38,9 @@
     }
   };
 
-  const getByUsername = async (username) => {
+  const getByUsername = async (
+    username: string,
+  ): Promise<typeof Subscription> => {
     try {
       return await Subscription.findOne({ userName: username });
     } catch (err) {
@@ -37,7 +48,7 @@
     }
   };
 
-  const getAllSubscriptions = async () => {
+  const getAllSubscriptions = async (): Promise<(typeof Subscription)[]> => {
     try {
       return await Subscription.find();
     } catch (err) {
@@ -45,7 +56,12 @@
     }
   };
 
-  const addSubscription = async (msg, hour, minute, userData) => {
+  const addSubscription = async (
+    msg,
+    hour: string,
+    minute: string,
+    userData: Coordinates,
+  ): Promise<void> => {
     try {
       const existingSubscription = await Subscription.findOne({
         userId: msg.from.id,
@@ -69,8 +85,8 @@
           times: [{ hour, minute }],
           chatId: msg.chat.id,
           coordinates: {
-            lat: userData.coordinates.lat,
-            lon: userData.coordinates.lon,
+            lat: userData.lat,
+            lon: userData.lon,
           },
         });
         await newSubscription.save();

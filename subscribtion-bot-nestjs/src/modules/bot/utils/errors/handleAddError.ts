@@ -1,7 +1,11 @@
 {
   const logger = require('../../../../utils/logger');
 
-  const handleAddError = async (err, bot, chatId) => {
+  const handleAddError = async (
+    err: Error,
+    bot,
+    chatId: number,
+  ): Promise<void> => {
     if (err.message === 'subscription at this time already exists') {
       await bot.sendMessage(
         chatId,

@@ -1,9 +1,14 @@
+import { Coordinates } from '../../subscription/subscription.interface';
 {
   const logger = require('../../../utils/logger');
   const fetchForecast = require('./fetchForecast');
   const composeForecast = require('./composeForecast');
 
-  const onSendWeatherReport = async (chatId, coordinates, bot) => {
+  const onSendWeatherReport = async (
+    chatId: number,
+    coordinates: Coordinates,
+    bot,
+  ): Promise<void> => {
     let data;
     const numberOfDays = 1;
     try {

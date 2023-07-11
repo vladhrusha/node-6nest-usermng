@@ -15,7 +15,8 @@ const {
   getAllSubscriptions,
   updateLocation,
 } = require('../subscription/subscription.database');
-let userData;
+import { Coordinates } from '../subscription/subscription.interface';
+let userData: Coordinates;
 let subs;
 const { requestLocation, respondLocation } = require('./utils/messages');
 const logger = require('../../utils/logger');
@@ -30,7 +31,7 @@ let isSubscribingMap = new Map();
 export class BotService implements OnModuleInit {
   constructor(@InjectBot() private bot: Telegraf<Context>) {}
 
-  async onModuleInit() {
+  async onModuleInit(): Promise<void> {
     subs = await getAllSubscriptions();
     if (subs.length === 1) {
       const sub = subs[0];
@@ -58,7 +59,7 @@ export class BotService implements OnModuleInit {
     }
   }
   @Start()
-  async startCommand(ctx: Context) {
+  async startCommand(ctx: Context): Promise<void> {
     await ctx.reply('Welcome');
     try {
       await requestLocation(ctx);
@@ -67,7 +68,7 @@ export class BotService implements OnModuleInit {
     }
   }
   @On('location')
-  async onLocation(ctx: Context) {
+  async onLocation(ctx: Context): Promise<void> {
     if (ctx.has(message('location'))) {
       userData = {
         lat: ctx.message.location.latitude,
@@ -83,7 +84,7 @@ export class BotService implements OnModuleInit {
     }
   }
   @Hears('/location')
-  async getLocation(@Ctx() ctx: Context) {
+  async getLocation(@Ctx() ctx: Context): Promise<void> {
     const chatId = ctx.message.chat.id;
     const msg = ctx.message;
     try {
@@ -93,12 +94,11 @@ export class BotService implements OnModuleInit {
     }
   }
   @Help()
-  async help(@Ctx() ctx: Context) {
-    const chatId = ctx.message.chat.id;
-    handlersBot.handleHelp(chatId, ctx);
+  async help(@Ctx() ctx: Context): Promise<void> {
+    handlersBot.handleHelp(ctx);
   }
   @Hears('/sub')
-  async sub(@Ctx() ctx: Context) {
+  async sub(@Ctx() ctx: Context): Promise<void> {
     const chatId = ctx.message.chat.id;
 
     isSubscribingMap = await handlersBot.handleSub(
@@ -108,7 +108,7 @@ export class BotService implements OnModuleInit {
     );
   }
   @Hears('/unsub')
-  async unsub(@Ctx() ctx: Context) {
+  async unsub(@Ctx() ctx: Context): Promise<void> {
     const chatId = ctx.message.chat.id;
     isSubscribingMap = await handlersBot.handleUnsub(
       chatId,
@@ -119,7 +119,7 @@ export class BotService implements OnModuleInit {
   }
 
   @Hears(timeRegex)
-  async setTime(@Ctx() ctx: Context) {
+  async setTime(@Ctx() ctx: Context): Promise<void> {
     const chatId = ctx.message.chat.id;
     if (ctx.has(message('text'))) {
       const [hour, minute] = ctx.message.text.split(':');

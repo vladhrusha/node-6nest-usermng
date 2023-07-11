@@ -1,7 +1,8 @@
+import { ForecastStamp } from '../bot.interface';
 {
   require('dotenv').config();
 
-  const composeForecast = async (data) => {
+  const composeForecast = async (data): Promise<ForecastStamp[]> => {
     const forecastStamps = data.list;
     return forecastStamps.map((forecastStamp) => {
       const dateTimeMilliseconds = new Date(forecastStamp.dt * 1000);
@@ -19,7 +20,7 @@
         weather: forecastStamp.weather[0].main,
         description: forecastStamp.weather[0].description,
         temp: forecastStamp.main.temp + '°C',
-        wind: forecastStamp.wind.speed + ' m/s',
+        wind: forecastStamp.wind.speed + ' m/s1',
         humidity: forecastStamp.main.humidity + '%',
       };
     });

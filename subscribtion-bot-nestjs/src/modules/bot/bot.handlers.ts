@@ -1,3 +1,6 @@
+import { Coordinates } from '../subscription/subscription.interface';
+type SubscriptionMap = Map<number, boolean>;
+
 {
   const logger = require('../../utils/logger');
   const {
@@ -13,7 +16,7 @@
   const handleAddError = require('./utils/errors/handleAddError');
   const handleDeleteError = require('./utils/errors/handleDeleteError');
   const addCronJob = require('./utils/addCronJob');
-  const handleHelp = async (ctx) => {
+  const handleHelp = async (ctx): Promise<void> => {
     ctx.reply('Hi there!', {
       reply_markup: {
         keyboard: [
@@ -22,7 +25,11 @@
       },
     });
   };
-  const handleSub = async (chatId, bot, isSubscribingMap) => {
+  const handleSub = async (
+    chatId: number,
+    bot,
+    isSubscribingMap: SubscriptionMap,
+  ): Promise<SubscriptionMap> => {
     try {
       isSubscribingMap.set(chatId, true);
       await requestTime(bot, chatId, isSubscribingMap.get(chatId));
@@ -31,7 +38,12 @@
       logger.error(err);
     }
   };
-  const handleUnsub = async (chatId, bot, isSubscribingMap, userName) => {
+  const handleUnsub = async (
+    chatId: number,
+    bot,
+    isSubscribingMap: SubscriptionMap,
+    userName: string,
+  ): Promise<SubscriptionMap> => {
     try {
       isSubscribingMap.set(chatId, false);
       await requestTime(bot, chatId, isSubscribingMap.get(chatId), userName);
@@ -41,6 +53,15 @@
     }
   };
 
+  interface SubscriptionData {
+    isSubscribingMap: SubscriptionMap;
+    chatId: number;
+    msg: any;
+    hour: number;
+    minute: number;
+    ctx: any;
+    userData: Coordinates;
+  }
   const handleSubscriptionMessages = async ({
     isSubscribingMap,
     chatId,
@@ -49,7 +70,7 @@
     minute,
     ctx,
     userData,
-  }) => {
+  }: SubscriptionData) => {
     if (isSubscribingMap.get(chatId) === false) {
       await ctx.reply('Thanks for choosing the unsub time!');
       try {

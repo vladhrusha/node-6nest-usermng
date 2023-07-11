@@ -1,7 +1,11 @@
 {
   const logger = require('../../../../utils/logger');
 
-  const handleDeleteError = async (err, bot, chatId) => {
+  const handleDeleteError = async (
+    err: Error,
+    bot,
+    chatId: number,
+  ): Promise<void> => {
     if (err.message === 'there is nothing to delete') {
       await bot.sendMessage(chatId, 'there is nothing to delete');
     } else {

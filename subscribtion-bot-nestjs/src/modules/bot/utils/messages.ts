@@ -23,7 +23,12 @@
     });
   };
   const { getByUsername } = require('../../subscription/subscription.database');
-  const requestTime = async (bot, chatId, isSubscribing, userName) => {
+  const requestTime = async (
+    bot,
+    chatId: number,
+    isSubscribing: Boolean,
+    userName: string,
+  ) => {
     if (isSubscribing) {
       await bot.reply(
         "Please provide the time in UTC timezone that you want <b> to schedule the task </b> in the format 'hh:mm' using the 24-hour clock." +

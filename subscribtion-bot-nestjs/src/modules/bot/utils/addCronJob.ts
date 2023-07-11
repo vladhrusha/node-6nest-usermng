@@ -4,7 +4,13 @@
   require('dotenv').config();
   const TZ = process.env.TZ;
 
-  const addCronJob = async (chadId, bot, hour, minute, coordinates) => {
+  const addCronJob = async (
+    chadId: number,
+    bot,
+    hour: number,
+    minute: number,
+    coordinates,
+  ) => {
     if (hour !== undefined && minute !== undefined) {
       const job = new CronJob(
         `${minute} ${hour} * * *`,
