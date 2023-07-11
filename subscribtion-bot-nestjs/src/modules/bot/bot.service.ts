@@ -10,7 +10,6 @@ import {
   Update,
 } from 'nestjs-telegraf';
 import { Context } from 'telegraf';
-const handlers = require('./handlers/index');
 const addCronJob = require('./utils/addCronJob');
 const {
   getAllSubscriptions,

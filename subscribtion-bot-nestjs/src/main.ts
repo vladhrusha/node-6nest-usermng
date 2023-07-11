@@ -7,7 +7,5 @@ const url = process.env.HEROKU_URL;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   await app.listen(3000);
-  // const bot = await app.get(getBotToken());
-  // await app.use(bot.webhookCallback(`${url}bot${token}`));
 }
 bootstrap();
