@@ -48,12 +48,12 @@ export class UserController {
       return putUserErrorResponse(err);
     }
   }
-  //get all users
-  @Get(`${appName}/${appVersion}/users`)
-  getAllUsers(@Body(new ValidationPipe()) body: GetUsersDto): User[] {
-    const users: User[] = this.userService.getUsers(body);
-    return users;
-  }
+  // //get all users
+  // @Get(`${appName}/${appVersion}/users`)
+  // getAllUsers(@Body(new ValidationPipe()) body: GetUsersDto): User[] {
+  //   const users: User[] = this.userService.getUsers(body);
+  //   return users;
+  // }
   //get user by nickname
   @Get(`${appName}/${appVersion}/user/:nickname`)
   getByNickname(@Param(new ValidationPipe()) dto: GetUserDto): User {
