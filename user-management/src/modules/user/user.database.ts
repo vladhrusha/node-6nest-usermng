@@ -30,11 +30,13 @@
   // const deleteAllUsers = async () => {
   //   await User.deleteMany();
   // };
-  const deleteUserByName = ({
+  const deleteUserByName = async ({
     nickname,
     deleted_at,
-  }: DeleteUserInput): void => {
-    User.updateOne(
+  }: DeleteUserInput): Promise<void> => {
+    console.log('fired4');
+
+    await User.updateOne(
       { nickname },
       {
         $set: {
@@ -72,16 +74,15 @@
     newUser.save();
   };
 
-  const updateUser = ({
+  const updateUser = async ({
     nickname,
     lastname,
     firstname,
     encryptedPassword,
     salt,
     updated_at,
-  }: UpdateUserInput): void => {
-    console.log(updated_at);
-    User.updateOne(
+  }: UpdateUserInput): Promise<void> => {
+    const result = await User.updateOne(
       { nickname },
       {
         $set: {
@@ -93,6 +94,7 @@
         },
       },
     );
+
     return;
   };
 

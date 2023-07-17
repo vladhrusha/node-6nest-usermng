@@ -13,6 +13,9 @@ import { AppResolver } from './app.resolvers';
     VoteModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      path: '/graphql/main',
+      include: [AppModule, UserModule],
+
       typeDefs: `
 
         type Query {

@@ -18,7 +18,7 @@ import {
 export class VoteResolver {
   constructor(private voteService: VoteService) {}
 
-  //login
+  //vote
   @HttpCode(HttpStatus.CREATED)
   @Mutation((returns) => String)
   async vote(
