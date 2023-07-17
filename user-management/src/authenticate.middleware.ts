@@ -13,7 +13,6 @@ interface CustomRequest extends Request {
 @Injectable()
 export class AuthenticateMiddleware implements NestMiddleware {
   async use(req: CustomRequest, res: Response, next: NextFunction) {
-    console.log('fired3');
     const token = req.headers.authorization?.split(' ')[1];
 
     if (token == null) return res.sendStatus(401);

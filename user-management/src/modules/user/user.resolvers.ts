@@ -35,14 +35,8 @@ export class UserResolver {
   async getUsers(@Args('parameters') parameters: GetUsersDto): Promise<User[]> {
     try {
       const users: User[] = await requestHandlers.handleGetUsers(parameters);
-      console.log('fired');
-      console.log(users);
       return users;
-    } catch (err) {
-      console.log('fired2');
-
-      console.log(err);
-    }
+    } catch (err) {}
   }
   //get user
   @Query((returns) => User)
