@@ -19,18 +19,23 @@ import {
   Context,
 } from '@nestjs/graphql';
 @ObjectType()
-class User {
-  @Field((type) => String)
-  nickname: String;
+class User {}
+
+class AllUsers {
+  users: User[];
+  totalUsers: number;
+  page: number;
+  limit: number;
 }
-@Resolver((of) => User)
+
+@Resolver()
 export class UserResolver {
   constructor(private userService: UserService) {}
   @Query((returns) => String)
   sayHello(): string {
     return 'Hello World!1';
   }
-  @Query((returns) => [User])
+  @Query((returns) => AllUsers)
   //get users
   async getUsers(@Args('parameters') parameters: GetUsersDto): Promise<User[]> {
     try {

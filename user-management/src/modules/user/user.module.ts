@@ -31,7 +31,7 @@ import { PostUserDto } from './user.dto';
 
         type Query {
           sayHello: String,
-          getUsers(parameters: GetUsersDto!): [User],
+          getUsers(parameters: GetUsersDto!): AllUsers,
           getByNickname(nickname: String!): User,
         }
         type Mutation {
@@ -57,7 +57,12 @@ import { PostUserDto } from './user.dto';
         input DeleteUserDto {
             nickname: String!
         }
-
+      type AllUsers {
+        users: [User]
+        totalUsers: Int
+        page: Int
+          limit: Int
+        }
         type User {
           nickname: String!
           firstname: String
