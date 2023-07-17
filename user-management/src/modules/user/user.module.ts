@@ -22,40 +22,15 @@ import { PostUserDto } from './user.dto';
 // import { User } from './user.interface';
 
 @Module({
-  imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      typeDefs: `
-        type Query {
-          sayHello: String,
-          getUsers: [User]
-        }
-        type User {
-          nickname: String!
-        }
-        input PostUserDto {
-          nickname: String!
-          firstname: String
-          lastname: String
-          password: String!
-        }
-        type Mutation {
-          addUser(user: PostUserDto!): String!
-        }
-      `,
-    }),
-  ],
+  imports: [],
   controllers: [UserController],
   providers: [UserService, UserResolver],
 })
 export class UserModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthenticateMiddleware).forRoutes(
-      {
-        path: '/task6/v1/user',
-        method: RequestMethod.DELETE,
-      },
-      { path: '/task6/v1/user', method: RequestMethod.PUT },
-    );
+    consumer.apply(AuthenticateMiddleware).forRoutes({
+      path: '/',
+      method: RequestMethod.POST,
+    });
   }
 }

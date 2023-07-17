@@ -21,20 +21,4 @@ const appVersion = process.env.APP_VERSION;
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-  //ping
-  @Get()
-  ping(): string {
-    return this.appService.ping();
-  }
-
-  //login
-  @Post(`${appName}/${appVersion}/login`)
-  login(@Req() req): string {
-    try {
-      const result = this.appService.login(req);
-      return result;
-    } catch (err) {
-      throw new HttpException({ err: err }, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
 }

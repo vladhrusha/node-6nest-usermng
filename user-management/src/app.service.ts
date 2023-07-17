@@ -4,10 +4,6 @@ const jwt = require('../src/authentication/jwt/index.ts');
 
 @Injectable()
 export class AppService {
-  //ping
-  ping(): string {
-    return 'You have pinged';
-  }
   //login
   login(req): string {
     const req1 = {
@@ -27,7 +23,7 @@ export class AppService {
       },
     };
     const user = requestHandlers.handleLogin(req1);
-    return user;
+    // return user;
     const userId = req1.body.userId;
     const token: string = jwt.generateAccessToken({ user, userId });
     return token;

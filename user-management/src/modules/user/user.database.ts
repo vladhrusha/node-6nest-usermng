@@ -80,6 +80,7 @@
     salt,
     updated_at,
   }: UpdateUserInput): void => {
+    console.log(updated_at);
     User.updateOne(
       { nickname },
       {

@@ -19,7 +19,7 @@ export class AuthenticateMiddleware implements NestMiddleware {
 
     jwt.verify(token, secret, (err, decoded) => {
       if (err) {
-        return res.status(403).json({ error: 'Invalid token' });
+        return res.status(403).json({ error: 'Invalid token1' });
       } else {
         req.user = decoded;
         next();
