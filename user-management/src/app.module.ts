@@ -14,7 +14,7 @@ import { AppResolver } from './app.resolvers';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       path: '/graphql/main',
-      include: [AppModule, UserModule],
+      include: [AppModule],
 
       typeDefs: `
 
