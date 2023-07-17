@@ -23,7 +23,6 @@ export class AppService {
       },
     };
     const user = requestHandlers.handleLogin(req1);
-    // return user;
     const userId = req1.body.userId;
     const token: string = jwt.generateAccessToken({ user, userId });
     return token;
