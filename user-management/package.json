@@ -95,7 +95,7 @@
     "testEnvironment": "node"
   },
   "lint-staged": {
-    "*.ts": "eslint --cache --fix"
+    "**/*.ts": "tsc-files --noEmit"
   },
   "husky": {
     "hooks": {

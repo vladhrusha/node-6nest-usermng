@@ -34,7 +34,7 @@
     nickname,
     deleted_at,
   }: DeleteUserInput): Promise<void> => {
-    console.log('test3');
+    console.log('test4');
     await User.updateOne(
       { nickname },
       {
