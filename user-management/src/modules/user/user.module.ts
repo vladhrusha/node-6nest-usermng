@@ -30,7 +30,6 @@ import { PostUserDto } from './user.dto';
       typeDefs: `
 
         type Query {
-          sayHello: String,
           getUsers(parameters: GetUsersDto!): AllUsers,
           getByNickname(nickname: String!): User,
         }

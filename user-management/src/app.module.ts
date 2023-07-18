@@ -19,7 +19,6 @@ import { AppResolver } from './app.resolvers';
       typeDefs: `
 
         type Query {
-          sayHello: String,
           getUsers(parameters: GetUsersDto!): [User],
           getByNickname(nickname: String!): User,
         }

@@ -31,10 +31,6 @@ class AllUsers {
 @Resolver()
 export class UserResolver {
   constructor(private userService: UserService) {}
-  @Query((returns) => String)
-  sayHello(): string {
-    return 'Hello World!1';
-  }
   @Query((returns) => AllUsers)
   //get users
   async getUsers(@Args('parameters') parameters: GetUsersDto): Promise<User[]> {
