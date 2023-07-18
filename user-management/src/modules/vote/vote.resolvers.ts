@@ -24,6 +24,12 @@ export class Vote {
 @Resolver((of) => Vote)
 export class VoteResolver {
   constructor(private voteService: VoteService) {}
+
+  //root
+  @Query(() => String)
+  sayHello(): string {
+    return 'Hello World!';
+  }
   //vote
   @Mutation((returns) => String)
   async vote(

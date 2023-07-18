@@ -1,30 +1,6 @@
 import { Field, InputType, Int, ObjectType } from '@nestjs/graphql';
 import { IsIn, IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-@ObjectType()
-export class UserOut {
-  @Field(() => String)
-  nickname: string;
-  @Field(() => String)
-  lastname: string;
-  @Field(() => String)
-  firstname: string;
-}
-@ObjectType()
-export class AllUsers {
-  @Field(() => [UserOut])
-  users: UserOut[];
-
-  @Field(() => Int)
-  totalUsers: number;
-
-  @Field(() => Int)
-  page: number;
-
-  @Field(() => Int)
-  limit: number;
-}
-
 @InputType()
 export class PostUserInput {
   @Field()

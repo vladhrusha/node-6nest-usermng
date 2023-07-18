@@ -12,8 +12,6 @@ import {
   UpdateUserInput,
   DeleteUserInput,
   PostUserInput,
-  UserOut,
-  AllUsers,
 } from './user.model';
 
 import {
@@ -29,11 +27,35 @@ import {
 } from '@nestjs/graphql';
 import { User } from './user.interface';
 
-@Resolver((of) => UserOut)
+@ObjectType()
+export class UserOutput {
+  @Field(() => String)
+  nickname: string;
+  @Field(() => String)
+  lastname: string;
+  @Field(() => String)
+  firstname: string;
+}
+@ObjectType()
+export class AllUsers {
+  @Field(() => [UserOutput])
+  users: UserOutput[];
+
+  @Field(() => Int)
+  totalUsers: number;
+
+  @Field(() => Int)
+  page: number;
+
+  @Field(() => Int)
+  limit: number;
+}
+
+@Resolver()
 export class UserResolver {
   constructor(private userService: UserService) {}
+  // get users
   @Query((returns) => AllUsers)
-  //get users
   async getUsers(
     @Args('parameters') parameters: GetUsersInput,
   ): Promise<User[]> {
@@ -43,11 +65,18 @@ export class UserResolver {
     } catch (err) {}
   }
   //get user
-  @Query((returns) => UserOut)
+  @Query((returns) => UserOutput)
   getByNickname(@Args('nickname') nickname: string): User {
     const user: User = requestHandlers.handleGetByNickname(nickname);
     return user;
   }
+
+  //root
+  @Query(() => String)
+  sayHello(): string {
+    return 'Hello World!1';
+  }
+
   //add user
   @Mutation((returns) => String)
   async addUser(@Args('user') user: PostUserInput): Promise<string> {

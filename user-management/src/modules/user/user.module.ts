@@ -23,11 +23,13 @@ import { join } from 'path';
 
 @Module({
   imports: [
-    // GraphQLModule.forRoot<ApolloDriverConfig>({
-    //   driver: ApolloDriver,
-    //   path: '/graphql/user',
-    //   autoSchemaFile: join(process.cwd(), 'src/modules/user/user.gql'),
-    // }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      path: '/graphql/user',
+      include: [UserModule],
+      sortSchema: true,
+      autoSchemaFile: join(process.cwd(), 'src/modules/user/user.gql'),
+    }),
   ],
   providers: [UserService, UserResolver],
 })

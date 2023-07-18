@@ -14,12 +14,13 @@ import { join } from 'path';
 
 @Module({
   imports: [
-    // GraphQLModule.forRoot<ApolloDriverConfig>({
-    //   driver: ApolloDriver,
-    //   autoSchemaFile: join(process.cwd(), 'src/modules/vote/vote.gql'),
-    //   sortSchema: true,
-    //   path: '/graphql/vote',
-    // }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/modules/vote/vote.gql'),
+      sortSchema: true,
+      path: '/graphql/vote',
+      include: [VoteModule],
+    }),
   ],
   controllers: [VoteController],
   providers: [VoteService, VoteResolver],

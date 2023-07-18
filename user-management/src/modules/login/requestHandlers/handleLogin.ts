@@ -1,7 +1,7 @@
 import { Controller, Post, Req } from '@nestjs/common';
 
 {
-  const User = require('../modules/user/user.model');
+  const User = require('../../user/user.model');
 
   const handleLogin = async (req): Promise<any> => {
     const { getByNickname } = require('../modules/user/user.database');
