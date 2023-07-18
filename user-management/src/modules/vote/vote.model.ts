@@ -1,21 +1,21 @@
-{
-  const mongoose = require('mongoose');
+import { Field, InputType, Int, ObjectType } from '@nestjs/graphql';
+import { IsIn } from 'class-validator';
 
-  const voteSchema = new mongoose.Schema({
-    userTo: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    userFrom: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    value: { type: Number, enum: [-1, 1, 0], required: true },
-    timestamp: { type: Date, default: Date.now },
-  });
-  const Vote = mongoose.model('Vote', voteSchema, 'votes');
+@InputType()
+export class PostVoteInput {
+  @Field(() => Int, { description: 'Vote value must be an integer' })
+  @IsIn([-1, 0, 1], { message: 'Vote value should be either -1, 0, or 1' })
+  value: number;
 
-  module.exports = Vote;
+  @Field({ description: 'Destination nickname is required' })
+  destNickname: string;
+}
+
+@ObjectType()
+export class PostVote {
+  @Field(() => Int, { description: 'Vote value' })
+  value: number;
+
+  @Field({ description: 'Destination nickname' })
+  destNickname: string;
 }

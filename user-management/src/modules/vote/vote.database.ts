@@ -1,7 +1,7 @@
 {
   /* eslint-disable camelcase */
-  const User = require('../user/user.model');
-  const Vote = require('./vote.model');
+  const User = require('../user/user.schema');
+  const Vote = require('./vote.schema');
 
   // eslint-disable-next-line
   const mongoose = require('../../db');
@@ -56,6 +56,7 @@
         vote.value = value;
         vote.timestamp = now.getTime();
         await vote.save();
+        return 'vote processed';
       }
     } else {
       const newVote = new Vote({
@@ -64,6 +65,7 @@
         value,
       });
       await newVote.save();
+      return 'vote processed';
     }
   };
 

@@ -10,31 +10,16 @@ import { AuthenticateMiddleware } from '../../authenticate.middleware';
 import { VoteResolver } from './vote.resolvers';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      path: '/graphql/vote',
-      include: [VoteModule],
-
-      typeDefs: `
-
-        type Query {
-          placeholder: String,
-        }
-        type Mutation {
-
-          vote(input: voteDto!): String
-
-        }
-
-        input voteDto {
-          destNickname: String
-          value: Int
-        }
-      `,
-    }),
+    // GraphQLModule.forRoot<ApolloDriverConfig>({
+    //   driver: ApolloDriver,
+    //   autoSchemaFile: join(process.cwd(), 'src/modules/vote/vote.gql'),
+    //   sortSchema: true,
+    //   path: '/graphql/vote',
+    // }),
   ],
   controllers: [VoteController],
   providers: [VoteService, VoteResolver],

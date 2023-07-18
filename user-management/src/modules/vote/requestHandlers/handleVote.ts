@@ -12,6 +12,7 @@
       destNickname,
       sourceNickname,
     });
+
     return addVoteResult;
   };
 

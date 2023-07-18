@@ -19,68 +19,16 @@ import {
   Mutation,
 } from '@nestjs/graphql';
 import { PostUserDto } from './user.dto';
+import { join } from 'path';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      path: '/graphql/user',
-      include: [UserModule],
-
-      typeDefs: `
-
-        type Query {
-          getUsers(parameters: GetUsersDto!): AllUsers,
-          getByNickname(nickname: String!): User,
-        }
-        type Mutation {
-          addUser(user: PostUserDto!): String!
-          updateUser(input: UpdateUserDto!): String!
-          deleteUser(input: DeleteUserDto!): String!
-
-        }
-        input PostUserDto {
-          nickname: String!
-          firstname: String
-          lastname: String
-          password: String!
-        }
-        input UpdateUserDto {
-          nickname: String!
-          lastname: String
-          firstname: String
-          password: String!
-          newPassword: String!
-          ifUnmodifiedSince: String!
-        }
-        input DeleteUserDto {
-            nickname: String!
-        }
-      type AllUsers {
-        users: [User]
-        totalUsers: Int
-        page: Int
-          limit: Int
-        }
-        type User {
-          nickname: String!
-          firstname: String
-          lastname: String
-          password: String!
-        }
-        input GetUsersDto {
-          page: Int,
-          limit: Int
-        }
-        enum UserRole {
-          USER
-          MODERATOR
-          ADMIN
-        }
-      `,
-    }),
+    // GraphQLModule.forRoot<ApolloDriverConfig>({
+    //   driver: ApolloDriver,
+    //   path: '/graphql/user',
+    //   autoSchemaFile: join(process.cwd(), 'src/modules/user/user.gql'),
+    // }),
   ],
-  controllers: [UserController],
   providers: [UserService, UserResolver],
 })
 export class UserModule implements NestModule {

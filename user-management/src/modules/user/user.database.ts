@@ -1,6 +1,6 @@
 {
   /* eslint-disable camelcase */
-  const User = require('./user.model');
+  const User = require('./user.schema');
   interface DeleteUserInput {
     nickname: string;
     deleted_at: string;
