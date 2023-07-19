@@ -7,7 +7,6 @@ import {
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { UserResolver } from './user.resolvers';
-import { AuthenticateMiddleware } from '../../authenticate.middleware';
 import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 import {
   GraphQLModule,
@@ -22,22 +21,17 @@ import { PostUserDto } from './user.dto';
 import { join } from 'path';
 
 @Module({
-  imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      path: '/graphql/user',
-      include: [UserModule],
-      sortSchema: true,
-      autoSchemaFile: join(process.cwd(), 'src/modules/user/user.gql'),
-    }),
-  ],
+  // imports: [
+  //   GraphQLModule.forRoot<ApolloDriverConfig>({
+  //     driver: ApolloDriver,
+  //     path: '/graphql',
+  //     include: [UserModule],
+  //     sortSchema: true,
+  //     autoSchemaFile: join(process.cwd(), 'src/modules/user/user.gql'),
+  //   }),
+  // ],
   providers: [UserService, UserResolver],
 })
 export class UserModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthenticateMiddleware).forRoutes({
-      path: '/graphql/user',
-      method: RequestMethod.POST,
-    });
-  }
+  configure(consumer: MiddlewareConsumer) {}
 }

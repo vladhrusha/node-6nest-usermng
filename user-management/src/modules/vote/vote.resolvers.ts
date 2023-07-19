@@ -1,8 +1,9 @@
 const requestHandlers = require('./requestHandlers');
-import { HttpStatus, HttpCode } from '@nestjs/common';
+import { HttpStatus, HttpCode, UseGuards } from '@nestjs/common';
 import { PostVoteDto } from './vote.dto';
 import { VoteService } from './vote.service';
 import { PostVoteInput, PostVote } from './vote.model';
+import { AuthGuard } from '../../authenticate.middleware';
 
 import {
   Resolver,
@@ -27,11 +28,12 @@ export class VoteResolver {
 
   //root
   @Query(() => String)
-  sayHello(): string {
+  sayHello3(): string {
     return 'Hello World!';
   }
   //vote
   @Mutation((returns) => String)
+  @UseGuards(AuthGuard)
   async vote(
     @Context() context: any,
     @Args('input') input: PostVoteInput,

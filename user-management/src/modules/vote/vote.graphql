@@ -7,19 +7,17 @@ type Mutation {
 }
 
 input PostVoteInput {
-  """Destination nickname is required"""
+  """
+  Destination nickname is required
+  """
   destNickname: String!
 
-  """Vote value must be an integer"""
+  """
+  Vote value must be an integer
+  """
   value: Int!
 }
 
 type Query {
   sayHello3: String!
-}
-
-type UserOutput {
-  firstname: String!
-  lastname: String!
-  nickname: String!
 }

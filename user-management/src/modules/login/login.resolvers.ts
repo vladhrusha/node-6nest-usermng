@@ -6,7 +6,7 @@ export class LoginResolver {
   constructor(private loginService: LoginService) {}
   //root
   @Query(() => String)
-  sayHello(): string {
+  sayHello2(): string {
     return 'Hello World!';
   }
   //login

@@ -11,7 +11,18 @@ import { AppResolver } from './app.resolvers';
 import { join } from 'path';
 
 @Module({
-  imports: [VoteModule, UserModule, LoginModule],
+  imports: [
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/app.gql'),
+      // typePaths: ['src/modules/vote/vote.gql'],
+      sortSchema: true,
+      path: '/graphql',
+    }),
+    UserModule,
+    LoginModule,
+    VoteModule,
+  ],
   providers: [AppService, AppResolver],
 })
 export class AppModule {}

@@ -8,15 +8,15 @@ import { LoginResolver } from './login.resolvers';
 import { join } from 'path';
 
 @Module({
-  imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      path: '/graphql/login',
-      sortSchema: true,
-      autoSchemaFile: join(process.cwd(), 'src/modules/login/login.gql'),
-      include: [LoginModule],
-    }),
-  ],
+  // imports: [
+  //   GraphQLModule.forRoot<ApolloDriverConfig>({
+  //     driver: ApolloDriver,
+  //     path: '/graphql',
+  //     sortSchema: true,
+  //     autoSchemaFile: join(process.cwd(), 'src/modules/login/login.gql'),
+  //     include: [LoginModule],
+  //   }),
+  // ],
   controllers: [LoginController],
   providers: [LoginService, LoginResolver],
 })

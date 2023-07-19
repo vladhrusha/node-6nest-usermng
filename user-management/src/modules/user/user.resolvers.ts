@@ -26,7 +26,8 @@ import {
   Int,
 } from '@nestjs/graphql';
 import { User } from './user.interface';
-
+import { AuthGuard } from '../../authenticate.middleware';
+import { UseGuards } from '@nestjs/common';
 @ObjectType()
 export class UserOutput {
   @Field(() => String)
@@ -73,8 +74,8 @@ export class UserResolver {
 
   //root
   @Query(() => String)
-  sayHello(): string {
-    return 'Hello World!1';
+  sayHello1(): string {
+    return 'Hello World!';
   }
 
   //add user
@@ -89,6 +90,7 @@ export class UserResolver {
   }
   //update user
   @Mutation(() => String)
+  @UseGuards(AuthGuard)
   async updateUser(
     @Args('input') input: UpdateUserInput,
     @Context() context: any,
@@ -102,6 +104,7 @@ export class UserResolver {
   }
   //delete user
   @Mutation(() => String)
+  @UseGuards(AuthGuard)
   async deleteUser(
     @Args('input') input: DeleteUserInput,
     @Context() context,

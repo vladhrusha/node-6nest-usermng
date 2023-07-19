@@ -4,7 +4,7 @@ import { Controller, Post, Req } from '@nestjs/common';
   const User = require('../../user/user.model');
 
   const handleLogin = async (req): Promise<any> => {
-    const { getByNickname } = require('../modules/user/user.database');
+    const { getByNickname } = require('../../user/user.database');
     const base64 = require('base-64');
     const authHeader = req.headers.authorization;
     const credentials = base64.decode(authHeader.split(' ')[1]);

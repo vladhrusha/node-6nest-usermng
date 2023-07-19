@@ -7,5 +7,5 @@ type Mutation {
 }
 
 type Query {
-  sayHello: String!
+  sayHello2: String!
 }

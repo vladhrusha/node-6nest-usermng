@@ -21,7 +21,9 @@ input GetUsersInput {
 type Mutation {
   addUser(user: PostUserInput!): String!
   deleteUser(input: DeleteUserInput!): String!
+  login: String!
   updateUser(input: UpdateUserInput!): String!
+  vote(input: PostVoteInput!): String!
 }
 
 input PostUserInput {
@@ -31,10 +33,21 @@ input PostUserInput {
   password: String!
 }
 
+input PostVoteInput {
+  """Destination nickname is required"""
+  destNickname: String!
+
+  """Vote value must be an integer"""
+  value: Int!
+}
+
 type Query {
   getByNickname(nickname: String!): UserOutput!
   getUsers(parameters: GetUsersInput!): AllUsers!
   sayHello1: String!
+  sayHello2: String!
+  sayHello3: String!
+  sayHelloMain: String!
 }
 
 input UpdateUserInput {
