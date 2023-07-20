@@ -10,7 +10,7 @@ export class LoginResolver {
     return 'Hello World!';
   }
   //login
-  @Mutation((returns) => String)
+  @Mutation(() => String)
   async login(@Context() context: any): Promise<string> {
     const result = this.loginService.login(context.req);
     return result;

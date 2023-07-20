@@ -47,9 +47,9 @@
     if (sourceNickname === destNickname) {
       return 'You cannot vote for yourself.';
     }
-    // if (!recentVoteByUserFrom && voteByUserFrom) {
-    //   return 'You can only vote once per hour.';
-    // }
+    if (!recentVoteByUserFrom && voteByUserFrom) {
+      return 'You can only vote once per hour.';
+    }
     if (vote && vote.timestamp) {
       const previousVote = vote.value;
       if (previousVote !== vote) {

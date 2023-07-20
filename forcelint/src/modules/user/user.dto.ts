@@ -1,5 +1,4 @@
-import { Param } from '@nestjs/common';
-import { IsInt, IsIn, IsString, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsInt, IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 // post user
 export class PostUserDto {

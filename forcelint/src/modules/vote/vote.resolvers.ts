@@ -1,8 +1,7 @@
 const requestHandlers = require('./requestHandlers');
-import { HttpStatus, HttpCode, UseGuards } from '@nestjs/common';
-import { PostVoteDto } from './vote.dto';
+import { UseGuards } from '@nestjs/common';
 import { VoteService } from './vote.service';
-import { PostVoteInput, PostVote } from './vote.model';
+import { PostVoteInput } from './vote.model';
 import { AuthGuard } from '../../authenticate.middleware';
 
 import {
@@ -13,16 +12,15 @@ import {
   Query,
   ObjectType,
   Field,
-  Int,
 } from '@nestjs/graphql';
 
 @ObjectType()
 export class Vote {
-  @Field((type) => String)
+  @Field(() => String)
   result: string;
 }
 
-@Resolver((of) => Vote)
+@Resolver(() => Vote)
 export class VoteResolver {
   constructor(private voteService: VoteService) {}
 
@@ -32,7 +30,7 @@ export class VoteResolver {
     return 'Hello World!';
   }
   //vote
-  @Mutation((returns) => String)
+  @Mutation(() => String)
   @UseGuards(AuthGuard)
   async vote(
     @Context() context: any,

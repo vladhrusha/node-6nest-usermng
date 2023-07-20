@@ -1,10 +1,5 @@
 const requestHandlers = require('./requestHandlers');
-import {
-  PostUserDto,
-  UpdateUserDto,
-  DeleteUserDto,
-  GetUsersDto,
-} from './user.dto';
+
 import { UserService } from './user.service';
 const putUserErrorResponse = require('./responses/putUserErrorResponse');
 import {
@@ -15,7 +10,6 @@ import {
 } from './user.model';
 
 import {
-  GraphQLModule,
   Resolver,
   Query,
   Args,
@@ -56,7 +50,7 @@ export class AllUsers {
 export class UserResolver {
   constructor(private userService: UserService) {}
   // get users
-  @Query((returns) => AllUsers)
+  @Query(() => AllUsers)
   async getUsers(
     @Args('parameters') parameters: GetUsersInput,
   ): Promise<User[]> {
@@ -66,7 +60,7 @@ export class UserResolver {
     } catch (err) {}
   }
   //get user
-  @Query((returns) => UserOutput)
+  @Query(() => UserOutput)
   getByNickname(@Args('nickname') nickname: string): User {
     const user: User = requestHandlers.handleGetByNickname(nickname);
     return user;
@@ -79,7 +73,7 @@ export class UserResolver {
   }
 
   //add user
-  @Mutation((returns) => String)
+  @Mutation(() => String)
   async addUser(@Args('user') user: PostUserInput): Promise<string> {
     try {
       await requestHandlers.handleAddUser(user);
@@ -107,7 +101,7 @@ export class UserResolver {
   @UseGuards(AuthGuard)
   async deleteUser(
     @Args('input') input: DeleteUserInput,
-    @Context() context,
+    // @Context() context,
   ): Promise<string> {
     await requestHandlers.handleDeleteUser(input);
     return 'User deleted';
