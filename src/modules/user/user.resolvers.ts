@@ -66,12 +66,6 @@ export class UserResolver {
     return user;
   }
 
-  //root
-  @Query(() => String)
-  sayHello1(): string {
-    return 'Hello World!';
-  }
-
   //add user
   @Mutation(() => String)
   async addUser(@Args('user') user: PostUserInput): Promise<string> {

@@ -26,8 +26,8 @@ export class VoteResolver {
 
   //root
   @Query(() => String)
-  sayHello3(): string {
-    return 'Hello World!';
+  voteQueryPlaceholder(): string {
+    return 'placeholder';
   }
   //vote
   @Mutation(() => String)

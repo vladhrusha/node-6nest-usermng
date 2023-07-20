@@ -6,8 +6,8 @@ export class LoginResolver {
   constructor(private loginService: LoginService) {}
   //root
   @Query(() => String)
-  sayHello2(): string {
-    return 'Hello World!';
+  loginQueryPlaceholder(): string {
+    return 'placeholder';
   }
   //login
   @Mutation(() => String)
