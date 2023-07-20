@@ -1,22 +1,13 @@
-# Task 6.1 User Management & 6.2 Nestjs Testing
+# Task 6 User Management, NestJS && GraphQL with MongoDB
 
-http://localhost:3000/task6/v1/users GET
-http://localhost:3000/task6/v1/user/:nickname GET
-http://localhost:3000/task6/v1/user POST
-http://localhost:3000/task6/v1/login POST
-http://localhost:3000/task6/v1/user DELETE
-http://localhost:3000/task6/v1/user PUT
+npm install
 
-# Task 3 Chat Bots
+//development
+npm run start:dev
 
-# Setup
+//production
+npm run start
 
-npm init -y
-
-npm i
-
-npm pkg set scripts.prepare="husky install"
-npx husky add .husky/pre-commit "npm test"
-git add .husky/pre-commit
-
-// "test": "jest",
+//production docker
+docker-compose build
+docker-compose up
