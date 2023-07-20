@@ -4,7 +4,7 @@ import { Resolver, Mutation, Context, Query } from '@nestjs/graphql';
 @Resolver()
 export class LoginResolver {
   constructor(private loginService: LoginService) {}
-  //root
+  //root query placeholder, to avoid empty root query error
   @Query(() => String)
   loginQueryPlaceholder(): string {
     return 'placeholder';

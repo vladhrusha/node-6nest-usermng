@@ -24,7 +24,7 @@ export class Vote {
 export class VoteResolver {
   constructor(private voteService: VoteService) {}
 
-  //root
+  //root query placeholder, to avoid empty root query error
   @Query(() => String)
   voteQueryPlaceholder(): string {
     return 'placeholder';
