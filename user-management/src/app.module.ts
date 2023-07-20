@@ -14,7 +14,7 @@ import { join } from 'path';
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/app.gql'),
+      autoSchemaFile: true,
       // typePaths: ['src/modules/vote/vote.gql'],
       sortSchema: true,
       path: '/graphql',
