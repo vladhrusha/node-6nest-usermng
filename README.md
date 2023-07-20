@@ -18,3 +18,5 @@ npm i
 npm pkg set scripts.prepare="husky install"
 npx husky add .husky/pre-commit "npm test"
 git add .husky/pre-commit
+
+// "test": "jest",
