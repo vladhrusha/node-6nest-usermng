@@ -7,7 +7,7 @@ export class AppResolver {
   //root
   @Query(() => String)
   sayHelloMain(): string {
-    console.log('testlint2');
+    console.log('testlint');
     return 'Hello World!';
   }
 }
