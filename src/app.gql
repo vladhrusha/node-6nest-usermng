@@ -1,0 +1,66 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AllUsers {
+  limit: Int!
+  page: Int!
+  totalUsers: Int!
+  users: [UserOutput!]!
+}
+
+input DeleteUserInput {
+  nickname: String!
+}
+
+input GetUsersInput {
+  limit: Float!
+  page: Float!
+}
+
+type Mutation {
+  addUser(user: PostUserInput!): String!
+  deleteUser(input: DeleteUserInput!): String!
+  login: String!
+  updateUser(input: UpdateUserInput!): String!
+  vote(input: PostVoteInput!): String!
+}
+
+input PostUserInput {
+  firstname: String
+  lastname: String
+  nickname: String!
+  password: String!
+}
+
+input PostVoteInput {
+  """Destination nickname is required"""
+  destNickname: String!
+
+  """Vote value must be an integer"""
+  value: Int!
+}
+
+type Query {
+  getByNickname(nickname: String!): UserOutput!
+  getUsers(parameters: GetUsersInput!): AllUsers!
+  sayHello1: String!
+  sayHello2: String!
+  sayHello3: String!
+  sayHelloMain: String!
+}
+
+input UpdateUserInput {
+  firstname: String
+  ifUnmodifiedSince: String!
+  lastname: String
+  newPassword: String!
+  nickname: String!
+  password: String!
+}
+
+type UserOutput {
+  firstname: String!
+  lastname: String!
+  nickname: String!
+}

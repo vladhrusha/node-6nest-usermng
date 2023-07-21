@@ -1,2 +1,13 @@
-6.1 && 6.2 - user-management
-6.3 - subscribtion-bot-nestjs
+# Task 6 User Management, NestJS && GraphQL with MongoDB
+
+npm install
+
+//development
+npm run start:dev
+
+//production
+npm run start
+
+//production docker
+docker-compose build
+docker-compose up
